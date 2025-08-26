@@ -1,0 +1,38 @@
+---
+title: "Programming In Base R"
+format: html
+editor: visual
+---
+
+# Basic Vector Practice
+
+1.  
+
+```{r}
+pre <- c(120, 151, 125, 126, 115, 132, 132, 129, 134, 139, 127, 122, 127, 135, 133, 128, 147, 138, 140, 132)
+post <- c( 127, 145, 135, 122, 115, 122, 123, 126, 126, 129, 132, 146, 120, 114, 121, 120, 128, 120, 133, 115)
+pre
+post
+```
+
+2.  
+
+```{r}
+names(pre) <- paste("Subject", 1:20, sep = "_")
+names(post) <- paste("Subject", 1:20, sep = "_")
+pre
+post
+```
+
+3.  
+
+```{r}
+change <- pre - post
+change
+```
+
+4.  
+
+```{r}
+mean(change)
+```
