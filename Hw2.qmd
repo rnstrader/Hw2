@@ -36,3 +36,36 @@ change
 ```{r}
 mean(change)
 ```
+
+5.
+
+```{r}
+which(change > 0)
+```
+
+6. 
+
+```{r}
+change[change > 0]
+```
+
+7. 
+
+```{r}
+mean(change[change > 0])
+```
+# Data Frame Practice
+
+1. 
+
+```{r}
+patient <- paste("Subject", 1:20, sep = "_")
+pressure <- data.frame(patient, pre_bp = pre, post_bp = post, diff_bp = change)
+pressure
+```
+
+2. 
+
+```{r}
+subset(pressure, diff_bp < 0)
+```
