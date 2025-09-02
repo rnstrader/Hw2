@@ -60,7 +60,7 @@ mean(change[change > 0])
 
 ```{r}
 patient <- paste("Subject", 1:20, sep = "_")
-pressure <- data.frame(patient, pre_bp = pre, post_bp = post, diff_bp = change)
+pressure <- data.frame(patient, pre_bp = pre, post_bp = post, diff_bp = change, row.names = NULL)
 pressure
 ```
 
@@ -68,4 +68,24 @@ pressure
 
 ```{r}
 subset(pressure, diff_bp < 0)
+```
+
+3. 
+
+```{r}
+pressure$under <- pressure[, 3] < 120
+pressure
+```
+
+4. 
+
+```{r}
+knitr::kable(pressure)
+```
+#List Practice
+
+1. 
+
+```{r}
+
 ```
