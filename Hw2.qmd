@@ -7,7 +7,7 @@ editor: visual
 # Basic Vector Practice
 
 1.  
-
+Making two vectors for pre and post measurements
 ```{r}
 pre <- c(120, 151, 125, 126, 115, 132, 132, 129, 134, 139, 127, 122, 127, 135, 133, 128, 147, 138, 140, 132)
 post <- c( 127, 145, 135, 122, 115, 122, 123, 126, 126, 129, 132, 146, 120, 114, 121, 120, 128, 120, 133, 115)
@@ -16,7 +16,7 @@ post
 ```
 
 2.  
-
+creating and assigning names for subjects in list
 ```{r}
 names(pre) <- paste("Subject", 1:20, sep = "_")
 names(post) <- paste("Subject", 1:20, sep = "_")
@@ -25,39 +25,39 @@ post
 ```
 
 3.  
-
+calculating change in blood pressure for each patient
 ```{r}
 change <- pre - post
 change
 ```
 
 4.  
-
+calculating average decrease in blood pressure
 ```{r}
 mean(change)
 ```
 
 5.
-
+creating a list of patients who experienced a decrease in blood pressure
 ```{r}
 which(change > 0)
 ```
 
 6. 
-
+Using a subset to also display only patients who experienced a decrease in blood pressure.
 ```{r}
 change[change > 0]
 ```
 
 7. 
-
+calculating the average decrease in blood pressure among patients whose blood pressure decreased.
 ```{r}
 mean(change[change > 0])
 ```
 # Data Frame Practice
 
 1. 
-
+Creating a data frame out of the lists generated above.
 ```{r}
 patient <- paste("Subject", 1:20, sep = "_")
 pressure <- data.frame(patient, pre_bp = pre, post_bp = post, diff_bp = change, row.names = NULL)
@@ -65,27 +65,53 @@ pressure
 ```
 
 2. 
-
+returning only rows corresponding to negative values of the diff_bp column
 ```{r}
 subset(pressure, diff_bp < 0)
 ```
 
 3. 
-
+creating a new column reporting true if the corresponding subjects post_bp is under 120, false otherwise
 ```{r}
 pressure$under <- pressure[, 3] < 120
 pressure
 ```
 
 4. 
-
+Printing a polished version of the dataframe
 ```{r}
 knitr::kable(pressure)
 ```
 #List Practice
 
 1. 
-
+creating a data frame out of information from subjects in the placebo study
 ```{r}
+patient <- paste("Subject", 1:10, sep = "_")
+pre_bp <- c(138, 135, 147, 117, 152, 134, 114, 121, 131, 130)
+post_bp <- c(105, 136, 123, 130, 134, 143, 135, 139, 120, 124)
+placebo <- data.frame(patient, pre_bp = pre_bp, post_bp = post_bp, change = pre_bp-post_bp)
+placebo$under <- placebo[, 3] < 120
+placebo
+```
 
+2. 
+creating a list with first element being experimental group blood pressure data and the second element the placebo blood pressure data
+```{r}
+study <- list(treatment = pressure, placebo = placebo)
+study
+```
+
+3. 
+three possible ways to access the first element of the list
+```{r}
+study[1]
+study[[1]]
+study$treatment
+```
+
+4. 
+accessing the pre_bp data from the placebo experiment within the list
+```{r}
+study[[2]][,2]
 ```
